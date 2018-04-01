@@ -17,8 +17,11 @@ class PageController extends Controller
     	return view('web.restaurants',compact('restaurants'));
     }
 
-    public function menu($id){
-    	$menu= Menu::where('restaurant_id',$id)->first();
+    public function menu($restaurant_name){
+    	/*obtener el id del restaurant*/
+    	$restaurant_id= Restaurant::where('name',$restaurant_name)->pluck('id')->first();
+    	
+    	$menu= Menu::where('restaurant_id',$restaurant_id)->first();
 
     	return view('web.menu',compact('menu'));
     

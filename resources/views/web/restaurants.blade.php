@@ -24,7 +24,7 @@
 								<b>Teléfono: </b> {{$restaurant->phone_number}}
 						    </p>
 						    <hr>
-						    <a href="{{route ('menu',$restaurant->id)}}" class="btn btn-primary float-right">Ver Carta</a>
+						    <a href="{{route ('menu',$restaurant->name)}}" class="btn btn-primary float-right">Ver Carta</a>
 						</div>
 					</div>
 					

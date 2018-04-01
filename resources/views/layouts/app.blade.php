@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -34,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a href="{{route('restaurant')}}">Inicio</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -44,6 +45,9 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            <li class="nav-item dropdown"><a class="nav-link" href="{{route('dishes.index')}}">Platos</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="{{route('schedules.index')}}">Horarios de Entrega</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="{{route('orders.index')}}">Pedidos</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -68,6 +72,32 @@
         </nav>
 
         <main class="py-4">
+            <!--Message After Eliminate-->
+            @if(session('info'))
+                <div class="container">
+                    <div class="col-md-8 offset-2">
+                        <div class="alert alert-success">
+                            {{session('info')}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            <!--Message Error-->
+            @if(count($errors))
+                <div class="container">
+                    <div class="col-md-8 offset-2">
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}} </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
