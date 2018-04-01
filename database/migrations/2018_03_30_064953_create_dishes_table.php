@@ -19,7 +19,8 @@ class CreateDishesTable extends Migration
         
             $table->string('name',120);
             $table->double('price',8,2);
-            $table->string('slug',128)->unique();//url amigable
+            $table->string('slug',128);//url amigable
+            $table->string('file', 128)->nullable();
             $table->timestamps();
 
             //Relation
