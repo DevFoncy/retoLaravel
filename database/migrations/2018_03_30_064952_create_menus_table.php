@@ -16,12 +16,16 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('restaurant_id')->unsigned();
+            $table->integer('dish_id')->unsigned();
             $table->string('fecha',30);
            
             $table->timestamps();
             
              //Relation
             $table->foreign('restaurant_id')->references('id')->on('restaurants')
+            ->onDelete('cascade')->onUpdate('cascade');
+            
+            $table->foreign('dish_id')->references('id')->on('dishes')
             ->onDelete('cascade')->onUpdate('cascade');
          
         });

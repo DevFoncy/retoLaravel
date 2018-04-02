@@ -9,6 +9,7 @@ use App\Http\Requests\DishUpdateRequest;
 use App\Http\Controllers\Controller;
 
 use App\Dish;
+use App\Menu;
 class DishController extends Controller
 {
 
@@ -30,8 +31,10 @@ class DishController extends Controller
     public function index()
     {
         $dishes= Dish::orderBy('id','DESC')->paginate(10);
+        $count_dishes=Dish::orderBy('id','DESC')->count();
+
         //dd($dishes);
-        return view('admin.dishes.index',compact('dishes'));
+        return view('admin.dishes.index',compact('dishes'))->with('count_dishes',$count_dishes);
     }
 
     /**
@@ -41,9 +44,13 @@ class DishController extends Controller
      */
     public function create()
     {
+        /*getListMenus*/
+       // $menus= Menu::orderBy('id','ASC')->pluck('id');
+
         return view('admin.dishes.create');
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -55,9 +62,12 @@ class DishController extends Controller
         //Salvar
         $dish=Dish::create($request->all());
 
-        return redirect()->route('dishes.edit',$dish->id)->with('info','Plato creado con exito');
+        //return redirect()->route('dishes.edit',$dish->id)->with('info','Plato creado con exito');
+        return redirect()->route('dishes.index')->with('info','Plato creado con exito');
+    
     }
 
+    
     /**
      * Display the specified resource.
      *
@@ -83,8 +93,10 @@ class DishController extends Controller
         //
 
         $dish=Dish::find($id);
+         /*getListMenus*/
+        $menus= Menu::orderBy('id','ASC')->pluck('id');
 
-        return view('admin.dishes.edit',compact('dish'));   
+        return view('admin.dishes.edit',compact('dish','menus'));   
     }
 
     /**

@@ -11,6 +11,7 @@ $factory->define(App\Restaurant::class, function (Faker $faker) {
 		'description'=>$faker->randomElement($arrayDescription),
 		'file'=>$faker->imageUrl($width=300, $height=200),
 		'address'=>$faker->address(),    
-		'phone_number'=>$faker->phoneNumber(),    
+		'phone_number'=>$faker->phoneNumber(), 
+		'email'=>$faker->safeEmail(),   
     ];
 });

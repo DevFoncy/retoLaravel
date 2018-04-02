@@ -8,15 +8,17 @@ class Menu extends Model
 {
     //
     protected $fillable = [
-        'id', 'restaurante_id', 'fecha'
+        'id', 'restaurant_id', 'fecha','dish_id'
     ];
 
      public function restaurant(){
     	return $this->belongsTo(Restaurant::class);
     }
 
-    public function dishes(){
-    	return $this->hasMany(Dish::class);
+
+    public function dish(){
+    	return $this->belongsTo(Dish::class);
     }
+
 
 }

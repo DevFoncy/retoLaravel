@@ -12,6 +12,6 @@ class MenusTableSeeder extends Seeder
     public function run()
     {
         //
-         factory(App\Menu::class,18)->create();
+         factory(App\Menu::class,180)->create();
     }
 }

@@ -15,7 +15,6 @@ class CreateDishesTable extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('menu_id')->unsigned();
         
             $table->string('name',120);
             $table->double('price',8,2);
@@ -23,9 +22,7 @@ class CreateDishesTable extends Migration
             $table->string('file', 128)->nullable();
             $table->timestamps();
 
-            //Relation
-            $table->foreign('menu_id')->references('id')->on('menus')
-            ->onDelete('cascade')->onUpdate('cascade');
+        
         
         });
     }

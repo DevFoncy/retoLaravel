@@ -7,7 +7,9 @@
 	 	<div class="col-md-8 col-sm-6 offset-2">
 	 		<div class="card">
 	 			<div class="card-header"> 
-	 				<b>Lista de Platos</b>  <a class="btn btn-sm btn-primary float-right" href="{{route('dishes.create')}}">Crear</a>
+	 				<b>Módulo Administrador - Lista de Platos</b>  <a class="btn btn-sm btn-primary float-right" href="{{route('dishes.create')}}">Crear Plato</a>
+	 				<br>
+	 				<small>Platos totales: 	{{$count_dishes}} </small>
 	 			</div>
 	 			<div class="card-body">
 	 				<table class="table table-striped table-hover">

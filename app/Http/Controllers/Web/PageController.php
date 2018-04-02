@@ -21,9 +21,9 @@ class PageController extends Controller
     	/*obtener el id del restaurant*/
     	$restaurant_id= Restaurant::where('name',$restaurant_name)->pluck('id')->first();
     	
-    	$menu= Menu::where('restaurant_id',$restaurant_id)->first();
+    	$menus= Menu::where('restaurant_id',$restaurant_id)->paginate(6);
 
-    	return view('web.menu',compact('menu'));
+        return view('web.menu',compact('menus'))->with('restaurant_name',$restaurant_name);
     
     }
 }

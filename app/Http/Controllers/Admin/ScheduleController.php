@@ -3,10 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ScheduleStoreRequest;
+use App\Http\Requests\ScheduleUpdateRequest;
+
 use App\Http\Controllers\Controller;
 
+use App\Restaurant;
+use App\Schedule;
 class ScheduleController extends Controller
 {
+
+    /**
+     * set Middleware
+     *
+     * @return view Login
+     */
+    
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +30,16 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants= Restaurant::orderBy('id','ASC')->get();
+        //dd($schedules);
+        return view('admin.schedules.index',compact('restaurants'));
+    }
+
+    public function index2($restaurant_id)
+    {
+        $schedules= Schedule::where('restaurant_id',$restaurant_id)->orderBy('id','DESC')->get();
+        //dd($schedules);
+        return view('admin.schedules.index2',compact('schedules'))->with('restaurant_id',$restaurant_id);
     }
 
     /**
@@ -22,9 +47,12 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($restaurant_id)
     {
-        //
+        /*getListMenus*/
+        //$menus= Menu::orderBy('id','ASC')->pluck('id');
+
+        return view('admin.schedules.create')->with('restaurant_id',$restaurant_id);
     }
 
     /**
@@ -33,9 +61,14 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleStoreRequest $request)
     {
-        //
+        //Salvar
+        $schedule=Schedule::create($request->all());
+
+      //  return redirect()->route('schedules.edit',$schedule->id)->with('info','Horario creado con exito');
+        return redirect()->route('restaurant-schedule',$schedule->restaurant_id)->with('info','Horario creado con exito');
+
     }
 
     /**
@@ -47,6 +80,9 @@ class ScheduleController extends Controller
     public function show($id)
     {
         //
+        $dish=Schedule::find($id);
+
+        return view('admin.schedules.show',compact('dish'));   
     }
 
     /**
@@ -58,6 +94,11 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         //
+        $schedule=Schedule::find($id);
+         /*getListMenus*/
+       // $menus= Menu::orderBy('id','ASC')->pluck('id');
+
+        return view('admin.schedules.edit',compact('schedule'));   
     }
 
     /**
@@ -67,9 +108,17 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ScheduleUpdateRequest $request, $id)
     {
         //
+        $schedule=Schedule::find($id);
+
+        /*Update Row */
+        $schedule->fill($request->all())->save();
+
+        /*show view after update*/
+        return redirect()->route('schedules.edit',$dish->id)->with('info','Horaro actualizado con exito');
+
     }
 
     /**
@@ -81,5 +130,9 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+        /*Fin Schedule then eliminate*/
+        $schedule=Schedule::find($id)->delete();
+
+        return back()->with('info','Horario Eliminado  correctamente');
     }
 }

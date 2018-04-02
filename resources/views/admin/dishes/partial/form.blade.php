@@ -5,7 +5,7 @@
 
 <div class="form-group">
 	{{Form::label('price','Precio')}}
-	{{Form::text('price',null,['class'=>'form-control','id'=>'price'])}}
+	{{Form::number('price',null,['class'=>'form-control','step'=>'0.1','id'=>'price'])}}
 </div>
 
 <div class="form-group">

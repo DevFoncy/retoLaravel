@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('dish_id')->unsigned();
             $table->integer('order_id')->unsigned();
             $table->integer('order_detail_id')->unsigned();
-        
+            $table->integer('user_id')->unsigned();
             $table->string('note',120);
             $table->timestamps();
 
@@ -30,6 +30,11 @@ class CreateOrdersTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders')
             ->onDelete('cascade')->onUpdate('cascade');
             
+            //User
+
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')->onUpdate('cascade');
+
              //Relation
             $table->foreign('order_detail_id')->references('id')->on('detail__orders')
             ->onDelete('cascade')->onUpdate('cascade');

@@ -11,7 +11,7 @@ class Dish extends Model
         'id', 'menu_id', 'name','price','file'
     ];
     
-    public function orders(){
+    /*public function orders(){
     	return $this->belongsToMany(User::class);
-    }
+    }*/
 }

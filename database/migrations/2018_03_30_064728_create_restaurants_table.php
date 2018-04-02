@@ -20,6 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('description',100)->nullable();
             $table->text('address')->nullable();
             $table->string('phone_number')->nullable();
+            $table->string('email')->nullable();
             $table->string('file', 128)->nullable();
             $table->timestamps();
 

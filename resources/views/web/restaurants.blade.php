@@ -19,9 +19,11 @@
 						  <img class="img-responsive" src="{{$restaurant->file}}" alt="Card image cap">
 						  @endif
 						    <p class="card-text">
-								<b>Descripcion: </b>	{{$restaurant->description}} <br>
-								<b>Dirección: </b> {{$restaurant->address}} <br>
-								<b>Teléfono: </b> {{$restaurant->phone_number}}
+						    	<hr>
+								<b>Descripcion : </b>	{{$restaurant->description}} <br>
+								<b>Dirección : </b> {{$restaurant->address}} <br>
+								<b>Teléfono : </b> {{$restaurant->phone_number}}<br>
+						    	<b>Email : </b>{{$restaurant->email}}
 						    </p>
 						    <hr>
 						    <a href="{{route ('menu',$restaurant->name)}}" class="btn btn-primary float-right">Ver Carta</a>

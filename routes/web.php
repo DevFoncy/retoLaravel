@@ -24,9 +24,18 @@ Route::get('restaurant', 'Web\PageController@restaurant')->name('restaurant');
 Route::get('menu/{name}','Web\PageController@menu')->name('menu');
 
 //Admin
+
+Route::get('restaurant-schedule/{restaurant_id}','Admin\ScheduleController@index2')->name('restaurant-schedule');
+
+Route::get('schedules-create/{restaurant_id}','Admin\ScheduleController@create')->name('schedules-create');
+
+Route::get('restaurant-carta-del-dia/{restaurant_id}','Admin\MenuController@createMenu')->name('restaurant-carta-del-dia');
+
 Route::resource('dishes','Admin\DishController');
 Route::resource('schedules','Admin\ScheduleController');
+Route::resource('menus','Admin\MenuController');
 Route::resource('orders','Admin\OrderController');
 
+//Route::get('crear-carta','Admin\DishController@storeMenu')->name('crear-carta');
 
 //User

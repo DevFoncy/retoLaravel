@@ -46,7 +46,7 @@
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                             <li class="nav-item dropdown"><a class="nav-link" href="{{route('dishes.index')}}">Platos</a></li>
-                            <li class="nav-item dropdown"><a class="nav-link" href="{{route('schedules.index')}}">Horarios de Entrega</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="{{route('schedules.index')}}">Restaurantes</a></li>
                             <li class="nav-item dropdown"><a class="nav-link" href="{{route('orders.index')}}">Pedidos</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
