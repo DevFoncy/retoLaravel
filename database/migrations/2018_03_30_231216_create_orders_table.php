@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('dish_id')->unsigned();
-            $table->integer('order_id')->unsigned();
-            $table->integer('order_detail_id')->unsigned();
+        //    $table->integer('order_detail_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('note',120);
+            $table->enum('state',['DRAFT','SUBMIT']);
             $table->timestamps();
 
              //Relation
@@ -27,8 +27,8 @@ class CreateOrdersTable extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
             
              //Relation
-            $table->foreign('order_id')->references('id')->on('orders')
-            ->onDelete('cascade')->onUpdate('cascade');
+            /*$table->foreign('order_id')->references('id')->on('orders')
+            ->onDelete('cascade')->onUpdate('cascade');*/
             
             //User
 
@@ -36,8 +36,8 @@ class CreateOrdersTable extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
 
              //Relation
-            $table->foreign('order_detail_id')->references('id')->on('detail__orders')
-            ->onDelete('cascade')->onUpdate('cascade');
+            /*$table->foreign('order_detail_id')->references('id')->on('detail__orders')
+            ->onDelete('cascade')->onUpdate('cascade');*/
         
         });
     }

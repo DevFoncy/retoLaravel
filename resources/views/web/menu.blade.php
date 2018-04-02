@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<h2 align="center">Restaurant <small> <b>{{$restaurant_name}} </b> </small></h2>
+	<h2 align="center">Restaurant <small> <b>{{$restaurant_name}} </b> </small>  <a class="btn btn-sm btn-success float-center" href="{{route('ver-carta-dia',$restaurant_id)}}">Ver Carta del Dia</a></h2>
 	<h4> Escoje los platos que desees </h4>
 	
 	<div class="row">		
@@ -20,7 +20,7 @@
 						     <img  width="200" class="img-responsive" src="{{$menu->dish->file}}" alt="Card image cap">
 						     @endif
 						     <hr>
-						     <a href="#" class="btn btn-info float-right">Pedir</a>
+						     <a  href="{{route ('pedir-menu',$menu->dish->id)}}" class="btn btn-info float-right">Pedir</a>
 						</div>
 					</div>
 					

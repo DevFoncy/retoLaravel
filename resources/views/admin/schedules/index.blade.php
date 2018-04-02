@@ -4,7 +4,7 @@
 @section('content')
 	<div class="container">
 	 <div class="row">
-	 	<div class="col-md-8 col-sm-6 offset-2">
+	 	<div class="col-md-10 col-sm-6 offset-1">
 	 		<div class="card">
 	 			<div class="card-header"> 
 	 				<b>Lista de Restaurantes de Lima</b> 
@@ -17,7 +17,7 @@
 					      <th>Nombre</th>
 					      <th>Tipo</th>
 					      <th>Distrito</th>
-					      <th style="text-align: center" colspan="2">Accion</th>
+					      <th style="text-align: center" colspan="3">Accion</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -35,6 +35,11 @@
 					      <td width="10px">
 					      	 <a href="{{route('restaurant-carta-del-dia',$restaurant->id)}}" class="btn btn-sm btn-success">
 					      	 	Carta del día
+					      	 </a>
+					      </td>
+					      <td width="10px">
+					      	 <a href="#" class="btn btn-sm btn-warning">
+					      	 	Ver Pedidos
 					      	 </a>
 					      </td>
 					    </tr>
